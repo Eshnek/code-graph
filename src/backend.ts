@@ -45,15 +45,13 @@ function analyzeText(path: vscode.Uri, text: string): GraphFile {
 }
 // calculates the frequency of each word split by non word characters
 function wordFrequency(text: string): Map<string, number> {
-    const words = text.toLowerCase().split(/\W+/);
+    const words = text.toLowerCase().split(/\W+/).filter((word) => word !== '');
     const frequencyMap = new Map<string, number>();
   
     for (const word of words) {
-      if (word) {
         const count = frequencyMap.get(word) || 0;
         frequencyMap.set(word, count + 1);
-      }
     }
   
     return frequencyMap;
-  }
+}
